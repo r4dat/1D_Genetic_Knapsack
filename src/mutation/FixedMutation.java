@@ -1,17 +1,28 @@
 package mutation;
 
-import population.Population;
-
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Iterator;
 import java.util.Random;
 
 import organism.Organism;
+import population.Population;
 
-public class FixedMutation extends Mutation {
+// TODO: Auto-generated Javadoc
+/**
+ * The Class FixedMutation.
+ */
+public class FixedMutation implements Mutation {
+
+	/** The rand. */
 	Random rand = new Random();
 
+	/**
+	 * Mutate bit with fixed probability.
+	 *
+	 * @param o       the o
+	 * @param percent the percent
+	 * @return the organism
+	 * @throws IllegalArgumentException the illegal argument exception
+	 */
 	// mutate with fixed probability P for every call
 	private Organism mutate_bit_with_fixed_probability(Organism o, int percent) throws IllegalArgumentException {
 		if ((percent < 0) | (percent > 100))
@@ -25,6 +36,11 @@ public class FixedMutation extends Mutation {
 		return (Organism) o.clone();
 	}
 
+	/**
+	 * Do mutation.
+	 *
+	 * @param pop the pop
+	 */
 	// Assumes Population is partially nulled from selection process.
 	@Override
 	public void doMutation(Population pop) {
