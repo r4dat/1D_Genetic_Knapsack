@@ -6,20 +6,18 @@ import java.util.Random;
 import organism.Organism;
 import population.Population;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RandomMutation.
+ * Implements fully random mutation methods.
  */
 public class RandomMutation implements Mutation {
 
-	/** The rand. */
-	Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
-	 * Mutate bit with random probability.
-	 *
-	 * @param o the o
-	 * @return the organism
+	 * In-place: Mutate a single bit/gene with random probability. 
+	 * @param o the organism
+	 * @return the mutated organism
 	 */
 	// mutate with random P for every call
 	private Organism mutate_bit_with_random_probability(Organism o) {
@@ -33,9 +31,9 @@ public class RandomMutation implements Mutation {
 	}
 
 	/**
-	 * Do mutation.
+	 * Implement the abstract mutation.
 	 *
-	 * @param pop the pop
+	 * @param pop the Population
 	 */
 	// Assumes Population is partially nulled from selection process.
 	@Override

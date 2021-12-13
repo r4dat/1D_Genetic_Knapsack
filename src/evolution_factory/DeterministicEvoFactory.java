@@ -5,14 +5,15 @@ import crossover.FixedCrossover;
 import mutation.FixedMutation;
 import mutation.Mutation;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * A factory for creating DeterministicEvo objects.
+ * A factory for creating deterministic crossover and mutation 
+ * objects.
  */
 public class DeterministicEvoFactory extends EvolutionFactory {
 
 	/**
-	 * Gets the crossover.
+	 * Gets the Factory crossover.
 	 *
 	 * @return the crossover
 	 */
@@ -22,7 +23,7 @@ public class DeterministicEvoFactory extends EvolutionFactory {
 	}
 
 	/**
-	 * Gets the mutation.
+	 * Gets the Factory mutation.
 	 *
 	 * @return the mutation
 	 */

@@ -6,25 +6,25 @@ import java.util.Random;
 import organism.Organism;
 import population.Population;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Class TournamentSelection.
+ * Selection strategy picking any 2 organisms and returning the best.
  */
 public class TournamentSelection implements SelectionStrategy {
 
-	/** The rand. */
 	// tournament selection match any random 2, winner, null unused.
-	Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
-	 * Do select.
-	 *
-	 * @param pop the pop
+	 * Implements the doSelect method.
+	 * Tournament selection with random organisms.
+	 * @param pop the Population
 	 */
 	public void doSelect(Population pop) {
 		ArrayList<Organism> list_in = pop.getPop();
-		ArrayList<Organism> orig_clone = new ArrayList<Organism>();
-		orig_clone = pop.deepCopyDense();
+		ArrayList<Organism> orig_clone = pop.deepCopyDense();
+		orig_clone.trimToSize();
 		int lsize = list_in.size();
 		for (int i = 0; i < lsize / 2; i++) {
 			Organism a = orig_clone.get(rand.nextInt(lsize));

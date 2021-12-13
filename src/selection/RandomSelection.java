@@ -6,19 +6,19 @@ import java.util.Random;
 import organism.Organism;
 import population.Population;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class RandomSelection.
+ * Return random organisms from population.
  */
 public class RandomSelection implements SelectionStrategy {
 
-	/** The rand. */
-	Random rand = new Random();
+
+	private Random rand = new Random();
 
 	/**
-	 * Do select.
-	 *
-	 * @param pop the pop
+	 * Implements doSelect.
+	 * Return random organism from population.
+	 * @param pop the Population
 	 */
 	// random selection, non-selected are null
 	public void doSelect(Population pop) {

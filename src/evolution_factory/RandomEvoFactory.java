@@ -5,9 +5,9 @@ import crossover.RandomCrossover;
 import mutation.Mutation;
 import mutation.RandomMutation;
 
-// TODO: Auto-generated Javadoc
 /**
- * A factory for creating RandomEvo objects.
+ * A factory for creating Random crossover and mutate
+ *  objects.
  */
 public class RandomEvoFactory extends EvolutionFactory {
 

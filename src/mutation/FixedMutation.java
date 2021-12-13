@@ -16,12 +16,12 @@ public class FixedMutation implements Mutation {
 	Random rand = new Random();
 
 	/**
-	 * Mutate bit with fixed probability.
+	 * In-place mutate bit with fixed probability.
 	 *
-	 * @param o       the o
-	 * @param percent the percent
-	 * @return the organism
-	 * @throws IllegalArgumentException the illegal argument exception
+	 * @param o       the incoming organism
+	 * @param percent the integer percent
+	 * @return the mutated organism
+	 * @throws IllegalArgumentException the illegal argument exception for percentages <0, >100.
 	 */
 	// mutate with fixed probability P for every call
 	private Organism mutate_bit_with_fixed_probability(Organism o, int percent) throws IllegalArgumentException {

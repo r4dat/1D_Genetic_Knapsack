@@ -1,8 +1,15 @@
 package knapsack_config;
 
-// TODO: Auto-generated Javadoc
 /**
- * 1d knapsack problem. Sample data:
+ * In practice this would be a config file, not class. 
+ * So it can be edited without re-compiling.
+ * 
+ * Weights, values, knapsack-size
+ * for the problem domain. 
+ * 1d knapsack problem. 
+ * Optimal solution value: 7534
+ * 
+ * Sample data:
  * https://developers.google.com/optimization/bin/knapsack
  * 
  * @author Rob Roy
@@ -28,9 +35,11 @@ public class Binary_knapsack_configuration {
 
 }
 
-/**
+/* Known best solution for google's 1d knapsack.
+ * Basic implementation to BitSet below.
  * int[] solution = {0, 1, 3, 4, 6, 10, 11, 12, 14, 15, 16, 17, 18, 19, 21, 22,
- * 24, 27, 28, 29, 30, 31, 32, 34, 38, 39, 41, 42, 44, 47, 48, 49}; BitSet
- * actual_sln = new BitSet(50); for (int i=0; i<solution.length; i++) { int idx
+ * 24, 27, 28, 29, 30, 31, 32, 34, 38, 39, 41, 42, 44, 47, 48, 49}; 
+ * BitSet actual_sln = new BitSet(50); 
+ * for (int i=0; i<solution.length; i++) { int idx
  * = solution[i]; actual_sln.set(idx,true); }
- **/
+ */

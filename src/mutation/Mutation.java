@@ -2,16 +2,17 @@ package mutation;
 
 import population.Population;
 
-// TODO: Auto-generated Javadoc
+
 /**
- * The Class Mutation.
+ * The Mutation interface.
+ * All implementors must have doMutation method.
  */
 public interface Mutation {
 
 	/**
-	 * Do mutation.
+	 * Abstracted mutation.
 	 *
-	 * @param pop the pop
+	 * @param pop the Population
 	 */
 	public abstract void doMutation(Population pop);
 }

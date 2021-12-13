@@ -2,16 +2,17 @@ package selection;
 
 import population.Population;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * The Interface SelectionStrategy.
+ * All strategies but implement doSelect.
  */
 public interface SelectionStrategy {
 
 	/**
 	 * Do select.
 	 *
-	 * @param p the p
+	 * @param pop the Population.
 	 */
-	void doSelect(Population p);
+	void doSelect(Population pop);
 }

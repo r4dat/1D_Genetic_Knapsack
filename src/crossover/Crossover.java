@@ -22,7 +22,7 @@ public abstract class Crossover {
 
 	/**
 	 * Concatenate vectors.
-	 *
+	 * Common method needed by all crossover classes.
 	 * @param vector_1_in the first Organism
 	 * @param vector_2_in the second Organism
 	 * @param lead_length - how much to keep of vector_1 after crossover.

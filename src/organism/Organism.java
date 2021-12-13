@@ -4,10 +4,19 @@ import java.util.BitSet;
 import java.util.Random;
 
 import knapsack_config.Binary_knapsack_configuration;
-// TODO: Auto-generated Javadoc
+
 
 /**
  * The Class Organism.
+ * Extends BitSet since that is well adapted to 
+ * binary knapsack problems. 
+ * 
+ * If this were more general purpose, I'd 
+ * make Organism an interface, then an OrgBitSet or similar
+ * so in the future we could extend Organism to use 
+ * strings/characters as the DNA representation. 
+ * E.g. currently [0,1,0,0] 
+ * Some problems more naturally resolve to [A,G,T,C] etc.
  */
 @SuppressWarnings("serial")
 public class Organism extends BitSet implements Comparable<Organism> {
@@ -27,8 +36,7 @@ public class Organism extends BitSet implements Comparable<Organism> {
 	/** The int size. */
 	private int intSize;
 
-	/** The rand. */
-	Random rand = new Random();
+	private Random rand = new Random();
 
 	/**
 	 * Instantiates a new organism.
@@ -58,8 +66,8 @@ public class Organism extends BitSet implements Comparable<Organism> {
 	}
 
 	/**
-	 * Mult arrays.
-	 *
+	 * Multiply Arrays fucntion
+	 * Internal implementation for BitSets.
 	 * @param gaState      the ga state
 	 * @param secondMatrix the second matrix
 	 * @return the double
@@ -75,8 +83,8 @@ public class Organism extends BitSet implements Comparable<Organism> {
 
 	/**
 	 * Evaluate fitness.
-	 *
-	 * @return the double
+	 * Loss function could be strategized.
+	 * @return the double fitness.
 	 */
 	public double evaluateFitness() {
 		BitSet tmp_bit = (BitSet) this.clone();
@@ -93,7 +101,7 @@ public class Organism extends BitSet implements Comparable<Organism> {
 	}
 
 	/**
-	 * Gets the org value.
+	 * Calc and return the org value.
 	 *
 	 * @return the org value
 	 */
@@ -112,7 +120,7 @@ public class Organism extends BitSet implements Comparable<Organism> {
 	}
 
 	/**
-	 * Gets the org weight.
+	 * Calculates organism weight.
 	 *
 	 * @return the org weight
 	 */
@@ -132,7 +140,7 @@ public class Organism extends BitSet implements Comparable<Organism> {
 
 	/**
 	 * Compare to.
-	 *
+	 * Compares two organisms returns -1,0,1 per interface. 
 	 * @param o the o
 	 * @return the int
 	 */

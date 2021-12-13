@@ -18,14 +18,16 @@ public class Ga_knapsack_runner {
 
 		// EvolutionFactory EvolutionSystem = new RandomEvoFactory();
 
-		Mutation mutate = EvolutionSystem.getMutation();
-		Crossover crossover = EvolutionSystem.getCrossover();
+		// Get mutation/crossover style from the factory.
+		Mutation activeMutate = EvolutionSystem.getMutation();
+		Crossover activeCrossover = EvolutionSystem.getCrossover();
 
 		// Utilize strategy method for selection determination.
 		SelectionStrategy TournStrat = new TournamentSelection();
 		SelectionStrategy EliteStrat = new EliteSelection();
 		SelectionStrategy activeSelection = TournStrat;
-
+		
+		// Create population (singleton).
 		Population bigPop = Population.getInstance();
 
 		System.out.println("Initial Population Fitness:" + bigPop.evaluateFitness());
@@ -34,8 +36,8 @@ public class Ga_knapsack_runner {
 		int epoch_limit = 10000;
 		for (int epoch = 0; epoch < epoch_limit; epoch++) {
 			activeSelection.doSelect(bigPop);
-			crossover.doCrossover(bigPop);
-			mutate.doMutation(bigPop);
+			activeCrossover.doCrossover(bigPop);
+			activeMutate.doMutation(bigPop);
 			double max_fit = bigPop.evaluateFitness();
 			if (fit_track != max_fit) {
 				System.out.println(
@@ -43,6 +45,8 @@ public class Ga_knapsack_runner {
 				fit_track = max_fit;
 			}
 			if (epoch == epoch_limit / 2) {
+				// Switch to strategy focusing on 
+				// existing organisms.
 				activeSelection = EliteStrat;
 			}
 		}
