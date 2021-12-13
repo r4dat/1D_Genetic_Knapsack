@@ -26,7 +26,7 @@ public abstract class Crossover {
 	 * @param vector_1_in the first Organism
 	 * @param vector_2_in the second Organism
 	 * @param lead_length - how much to keep of vector_1 after crossover.
-	 * @return the organism
+	 * @return the new organism that is a crossover of Org_1 and Org_2.
 	 */
 	// Thanks SO
 	// https://stackoverflow.com/questions/10495953/java-bitset-which-allows-easy-concatenation-of-bitsets
