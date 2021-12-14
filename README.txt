@@ -69,6 +69,9 @@ from the client perspective what's going on under the hood.
 From the client perspective we're interacting with the EvolutionFactory interface, and the Crossover and Mutation
 interfaces.
 
+As a future state the factories could take in a run-time Organism and return appropriate mutate/crossover functions
+as these would differ depending on gene type (bits vs letter sets as in DNA for example). 
+
 __Abstraction__
 I'd acknowledge that there is space for further OOP in the organism class. 
 I have not further done so out of deference to the actual GA problem I'm solving. 
