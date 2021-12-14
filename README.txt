@@ -1,8 +1,10 @@
+CS613
 A 1D Genetic Knapsack Implementation using design patterns.
+Github: https://github.com/r4dat/1D_Genetic_Knapsack
 
 Group member: Rob Rutherford
 
-The following assumes you're in the top-level directory of the repository/project.
+The following assumes you're in the top-level directory of the repository/project, and have java sdk bin in path. 
 
 JavaDoc creation command:
 javadoc -d doc -sourcepath src -subpackages crossover:evolution_factory:ga_knapsack_runner:knapsack_config:mutation:organism:population:selection
@@ -16,13 +18,64 @@ java -cp .\bin ga_knapsack_runner.Ga_knapsack_runner
 Output: 
 System runs the genetic optimizer on a known binary knapsack problem for 10,000 epochs.
 System prints initial population fitness, and then when a higher fitness organism is found prints the epoch, fitness, and
-percentage fitness vs known maximum from branch-and-bound method. See: https://developers.google.com/optimization/bin/knapsack
+percentage fitness vs known maximum from branch-and-bound solution. See: https://developers.google.com/optimization/bin/knapsack
+
+Sample Output: 
+Initial Population Fitness:2951.0
+Epoch: 0 max fitness: 2951.0 Percent max: 0.3916910007963897
+Epoch: 1 max fitness: 5095.0 Percent max: 0.676267586939209
+Epoch: 54 max fitness: 5943.0 Percent max: 0.7888239978762941
 
 __singleton pattern__
+src/population/Population.java
 
+Population is a singleton using double checked locking implementation. 
+This reduces synchronization overhead if we want to expand this system in a multi-threaded way. (Head First Design Patterns, p182)
+Our problem is one amenable to a single small pool, but we could make a very large population singleton and alter it to farm out 
+mutation, crossover, and evaluation on chunks of the population.
 
 
 __strategy pattern__
+src/selection/SelectionStrategy.java
+src/selection/TournamentSelection.java
+src/ga_knapsack_runner/Ga_knapsack_runner.java
+
+Selection has been implemented with the Strategy pattern. 
+SelectionStrategy is the base interface, and various selection classes (e.g. TournamentSelection, line 28 of runner) 
+implement that interface. This allows to transparently swap strategies as desired with no impact on the client
+(Ga_knapsack_runner in this case). We start initially with the Tournament Strategy, and then half-way through the 
+set epoch_limit we switch the activeStrategy (an instance of SelectionStrategy) to the Elite Strategy (runner, line 50).
+In more complex problem domains we may switch strategies multiple times - from an initial strategy that emphasizes 
+exploration of the solution space to one that focuses on existing solutions, and then to something more exploratory if 
+the increase in fitness stalls. 
+Thanks to the strategy pattern this is a relatively easy thing to do, as shown by the strategy switch in the runner file.
 
 
 __factory pattern__
+Abstract Factory: src/evolution_factory/EvolutionFactory.java
+Concrete Factory: src/evolution_factory/DeterministicEvoFactory.java
+Abstract Product: src/crossover/Crossover.java  
+Concrete Product: src/crossover/FixedCrossover.java
+
+Crossover and mutation styles were created using the abstract factory pattern. 
+The interface Evolution Factory has concrete factories creating concrete "products" Crossover and Mutation. 
+The "products" being created implement the anstract interface Crossover and Mutation. 
+(interface)/Evolution Factory/ -> (Concrete) Deterministic and Random Evolution Factories. 
+(interface)/Crossover,Mutate classes/ -> (Concrete) Fixed and Random Crossover classes. 
+So we have the parallel abstract to concrete structure found in the factory pattern. 
+This allows us to delegate the Crossover algorithm creation to the sublcass concrete factory, while not caring 
+from the client perspective what's going on under the hood.
+
+From the client perspective we're interacting with the EvolutionFactory interface, and the Crossover and Mutation
+interfaces.
+
+__Abstraction__
+I'd acknowledge that there is space for further OOP in the organism class. 
+I have not further done so out of deference to the actual GA problem I'm solving. 
+My next iteration of the project would have an abstract Organism interface, with 
+the current organism becoming BitOrganism or similar. That way we could add an additional 
+Organism type that uses characters (ala DNA) or its genes instead of just bits. 
+
+The fully realized nature of this is an abstraction for genes 
+and an organism factory that can have binary, character [A,C,G,T], or other customized genes, 
+with their dependent mutation functions.
