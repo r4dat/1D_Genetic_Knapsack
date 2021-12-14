@@ -34,6 +34,12 @@ This reduces synchronization overhead if we want to expand this system in a mult
 Our problem is one amenable to a single small pool, but we could make a very large population singleton and alter it to farm out 
 mutation, crossover, and evaluation on chunks of the population.
 
+While the code is not currently set up this way, adding an Organism interface, and the OrganismBit
+as the current Organism would be a good choice. Then we could use generics appropriately
+in the population. Like ArrayList<? extends Organism> - this covers both heterogenous additions to the ArrayList, and 
+future extension ala OrganismLetters. Some typing is needed because previous versions of Java would allow untyped Collections which can lead to heterogenous sets. E.g. it's possible the ArrayList
+might contain an Organism, and a integer or some other mixed object types.
+
 
 __strategy pattern__
 src/selection/SelectionStrategy.java
@@ -82,3 +88,5 @@ Organism type that uses characters (ala DNA) or its genes instead of just bits.
 The fully realized nature of this is an abstraction for genes 
 and an organism factory that can have binary, character [A,C,G,T], or other customized genes, 
 with their dependent mutation functions.
+
+The above abstraction would also be a good use of generics as previously discussed. 
