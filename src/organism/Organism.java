@@ -40,6 +40,8 @@ public class Organism extends BitSet implements Comparable<Organism> {
 
 	/**
 	 * Instantiates a new organism.
+	 * With size default to configuration.values.length,
+	 * Sets random bits (genes) within organism.
 	 */
 	public Organism() {
 		super(Binary_knapsack_configuration.VALUES.length);
@@ -52,7 +54,7 @@ public class Organism extends BitSet implements Comparable<Organism> {
 	}
 
 	/**
-	 * Instantiates a new organism.
+	 * Instantiates a new organism of size "length". 
 	 *
 	 * @param length the length
 	 */
@@ -66,7 +68,7 @@ public class Organism extends BitSet implements Comparable<Organism> {
 	}
 
 	/**
-	 * Multiply Arrays fucntion
+	 * Multiply Arrays function
 	 * Internal implementation for BitSets.
 	 * @param gaState      the ga state
 	 * @param secondMatrix the second matrix
