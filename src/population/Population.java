@@ -131,7 +131,7 @@ public class Population {
 	 * A deep, sparse copy. 
 	 * In some cases we want a deep copy, not references. 
 	 * Some operations null out ArrayList entries, in this case we keep them.
-	 * E.g. [0,1,null].deepCopyDense returns [0,1,null].
+	 * E.g. [0,1,null].deepCopySparse returns [0,1,null].
 	 * @return the array list
 	 */
 	public ArrayList<Organism> deepCopySparse() {
