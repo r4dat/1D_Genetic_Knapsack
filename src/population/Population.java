@@ -37,8 +37,8 @@ public class Population {
 	 * Generates initial population.
 	 */
 	private Population() {
-		// Using generic for internal ArrayList
-		// make sure nothing odd sneaks in.
+		// Ideally we'd do have organism related OOP for 
+		// Bit vs character genes. Then we could do ArrayList<? extends Organism> here.
 		pop = new ArrayList<Organism>(pop_size);
 		fillPop();
 	}

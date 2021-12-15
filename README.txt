@@ -83,7 +83,7 @@ I'd acknowledge that there is space for further OOP in the organism class.
 I have not further done so out of deference to the actual GA problem I'm solving. 
 My next iteration of the project would have an abstract Organism interface, with 
 the current organism becoming BitOrganism or similar. That way we could add an additional 
-Organism type that uses characters (ala DNA) or its genes instead of just bits. 
+Organism type that uses characters (ala DNA) for its genes instead of just bits. 
 
 The fully realized nature of this is an abstraction for genes 
 and an organism factory that can have binary, character [A,C,G,T], or other customized genes, 
