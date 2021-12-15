@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import organism.OrganismBit;
-import population.Population;
+import population.PopulationBit;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -41,9 +41,9 @@ public class FixedMutation implements Mutation {
 	 *
 	 * @param pop the pop
 	 */
-	// Assumes Population is partially nulled from selection process.
+	// Assumes PopulationBit is partially nulled from selection process.
 	@Override
-	public void doMutation(Population pop) {
+	public void doMutation(PopulationBit pop) {
 		ArrayList<OrganismBit> list_in = pop.getPop();
 		ArrayList<OrganismBit> orig_clone = pop.deepCopyDense();
 		orig_clone.trimToSize();

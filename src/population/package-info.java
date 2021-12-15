@@ -1,4 +1,4 @@
 /**
- * Population class which holds all organisms. 
+ * PopulationBit class which holds all organisms. 
  */
 package population;

@@ -1,6 +1,6 @@
 package mutation;
 
-import population.Population;
+import population.PopulationBit;
 
 
 /**
@@ -12,7 +12,7 @@ public interface Mutation {
 	/**
 	 * Abstracted mutation.
 	 *
-	 * @param pop the Population
+	 * @param pop the PopulationBit
 	 */
-	public abstract void doMutation(Population pop);
+	public abstract void doMutation(PopulationBit pop);
 }

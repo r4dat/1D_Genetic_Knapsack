@@ -11,7 +11,7 @@ import knapsack_config.Binary_knapsack_configuration;
  * @author Rob Roy
  *
  */
-public class OrganismChar implements Organism, Comparable<OrganismChar> {
+public class OrganismChar implements Organism, Comparable<OrganismChar>, Cloneable {
 	private Random rand = new Random();
 	private ArrayList<Character> internal_array = null;
 	private double intFitness = 0;
@@ -62,6 +62,7 @@ public class OrganismChar implements Organism, Comparable<OrganismChar> {
 	@Override
 	public double evaluateFitness() {
 		// TODO Auto-generated method stub
+		intFitness=0;
 		return 0;
 	}
 
@@ -92,6 +93,18 @@ public class OrganismChar implements Organism, Comparable<OrganismChar> {
 	 */
 	public Character set(int index, Character c) {
 		return internal_array.set(index, c);
+	}
+	
+	public double getFitness() {
+		return intFitness;
+	}
+	
+	public Object clone(){  
+	    try{  
+	        return super.clone();  
+	    }catch(Exception e){ 
+	        return null; 
+	    }
 	}
 
 }

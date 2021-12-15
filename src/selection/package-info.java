@@ -1,4 +1,4 @@
 /**
- * Package implementing Population selection strategies.
+ * Package implementing PopulationBit selection strategies.
  */
 package selection;

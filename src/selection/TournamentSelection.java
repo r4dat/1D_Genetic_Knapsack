@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import organism.OrganismBit;
-import population.Population;
+import population.PopulationBit;
 
 
 /**
@@ -19,9 +19,9 @@ public class TournamentSelection implements SelectionStrategy {
 	/**
 	 * Implements the doSelect method.
 	 * Tournament selection with random organisms.
-	 * @param pop the Population
+	 * @param pop the PopulationBit
 	 */
-	public void doSelect(Population pop) {
+	public void doSelect(PopulationBit pop) {
 		ArrayList<OrganismBit> list_in = pop.getPop();
 		ArrayList<OrganismBit> orig_clone = pop.deepCopyDense();
 		orig_clone.trimToSize();

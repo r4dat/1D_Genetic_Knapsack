@@ -4,7 +4,7 @@ import crossover.Crossover;
 import evolution_factory.DeterministicEvoFactory;
 import evolution_factory.EvolutionFactory;
 import mutation.Mutation;
-import population.Population;
+import population.PopulationBit;
 import selection.EliteSelection;
 import selection.SelectionStrategy;
 import selection.TournamentSelection;
@@ -28,9 +28,9 @@ public class Ga_knapsack_runner {
 		SelectionStrategy activeSelection = TournStrat;
 		
 		// Create population (singleton).
-		Population bigPop = Population.getInstance();
+		PopulationBit bigPop = PopulationBit.getInstance();
 
-		System.out.println("Initial Population Fitness:" + bigPop.evaluateFitness());
+		System.out.println("Initial PopulationBit Fitness:" + bigPop.evaluateFitness());
 
 		double fit_track = 0;
 		int epoch_limit = 10000;

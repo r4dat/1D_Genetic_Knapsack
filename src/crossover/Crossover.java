@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.BitSet;
 
 import organism.*;
-import population.Population;
+import population.PopulationBit;
 import java.util.Random;
 
 /**
@@ -17,9 +17,9 @@ public abstract class Crossover {
 	/**
 	 * Do crossover.
 	 * Crossover subclasses must implement doCrossover.
-	 * @param pop the Population
+	 * @param pop the PopulationBit
 	 */
-	public abstract void doCrossover(Population pop);
+	public abstract void doCrossover(PopulationBit pop);
 
 
 	/**
@@ -54,11 +54,18 @@ public abstract class Crossover {
 		return tmp.get(rand.nextInt(tmp.size()));
 	}
 	
+	/**
+	 * Concatenate vectors from OrganismChar
+	 */
 	protected static OrganismChar concatenate_vectors(OrganismChar vector_1_in, OrganismChar vector_2_in, int lead_length) {
 		//TODO implement character based crossover. 
 		return new OrganismChar();
 	}
 	
+	/**
+	 * Generic concatenate vectors for Organism
+	 * 	 
+	 */
 	protected static Organism concatenate_vectors(Organism vector_1_in, Organism vector_2_in, int lead_length) {
 		//TODO implement generic based crossover. 
 		// Call Char or Bitset xover based on instanceof.

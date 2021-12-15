@@ -32,6 +32,9 @@ public class Binary_knapsack_configuration {
 
 	/** The Constant DEFAULT_POPULATION_SIZE. */
 	public static final int DEFAULT_POPULATION_SIZE = 500;
+	
+	/** The Organism gene-type */
+	public static final String GENE_TYPE = "bit";
 
 }
 

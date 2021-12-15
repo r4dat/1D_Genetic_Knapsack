@@ -1,6 +1,6 @@
 package selection;
 
-import population.Population;
+import population.PopulationBit;
 
 
 /**
@@ -12,7 +12,7 @@ public interface SelectionStrategy {
 	/**
 	 * Do select.
 	 *
-	 * @param pop the Population.
+	 * @param pop the PopulationBit.
 	 */
-	void doSelect(Population pop);
+	void doSelect(PopulationBit pop);
 }

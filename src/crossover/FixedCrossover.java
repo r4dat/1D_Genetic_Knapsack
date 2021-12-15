@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 import organism.OrganismBit;
-import population.Population;
+import population.PopulationBit;
 
 
 /**
@@ -52,11 +52,11 @@ public class FixedCrossover extends Crossover {
 	/**
 	 * Do crossover.
 	 * Implementation of crossover.
-	 * @param pop the Population
+	 * @param pop the PopulationBit
 	 */
-	// Assumes Population is partially nulled from selection process.
+	// Assumes PopulationBit is partially nulled from selection process.
 	@Override
-	public void doCrossover(Population pop) {
+	public void doCrossover(PopulationBit pop) {
 		ArrayList<OrganismBit> list_in = pop.getPop();
 		ArrayList<OrganismBit> orig_clone = pop.deepCopyDense();
 		orig_clone.trimToSize();
