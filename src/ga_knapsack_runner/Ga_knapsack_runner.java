@@ -41,7 +41,7 @@ public class Ga_knapsack_runner {
 			double max_fit = bigPop.evaluateFitness();
 			if (fit_track != max_fit) {
 				System.out.println(
-						"Epoch: " + epoch + " max fitness: " + max_fit + " Percent max: " + (max_fit / 7534.0));
+				"Epoch: " + epoch + " max fitness: " + max_fit + " Percent max: " + (max_fit / 7534.0));
 				fit_track = max_fit;
 			}
 			if (epoch == epoch_limit / 2) {

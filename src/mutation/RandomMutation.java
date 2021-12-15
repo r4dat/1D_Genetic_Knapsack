@@ -3,7 +3,7 @@ package mutation;
 import java.util.ArrayList;
 import java.util.Random;
 
-import organism.Organism;
+import organism.OrganismBit;
 import population.Population;
 
 /**
@@ -20,14 +20,14 @@ public class RandomMutation implements Mutation {
 	 * @return the mutated organism
 	 */
 	// mutate with random P for every call
-	private Organism mutate_bit_with_random_probability(Organism o) {
+	private OrganismBit mutate_bit_with_random_probability(OrganismBit o) {
 		int percent = rand.nextInt(100);
 		for (int i = 0; i < o.getOrgSize(); i++) {
 			if (rand.nextInt(100) <= percent) {
 				o.flip(i);
 			}
 		}
-		return (Organism) o.clone();
+		return (OrganismBit) o.clone();
 	}
 
 	/**
@@ -38,12 +38,12 @@ public class RandomMutation implements Mutation {
 	// Assumes Population is partially nulled from selection process.
 	@Override
 	public void doMutation(Population pop) {
-		ArrayList<Organism> list_in = pop.getPop();
-		ArrayList<Organism> orig_clone = pop.deepCopyDense();
+		ArrayList<OrganismBit> list_in = pop.getPop();
+		ArrayList<OrganismBit> orig_clone = pop.deepCopyDense();
 		orig_clone.trimToSize();
 		for (int i = 0; i < list_in.size(); i++) {
 			if (list_in.get(i) == null) {
-				Organism o = orig_clone.get(rand.nextInt(orig_clone.size()));
+				OrganismBit o = orig_clone.get(rand.nextInt(orig_clone.size()));
 				list_in.set(i, (mutate_bit_with_random_probability(o)));
 			}
 		}

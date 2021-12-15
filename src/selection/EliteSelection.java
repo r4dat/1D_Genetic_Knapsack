@@ -3,7 +3,7 @@ package selection;
 import java.util.ArrayList;
 import java.util.Collections;
 
-import organism.Organism;
+import organism.OrganismBit;
 import population.Population;
 
 // TODO: Auto-generated Javadoc
@@ -22,7 +22,7 @@ public class EliteSelection implements SelectionStrategy {
 	// best n selection: pick top 10%
 	public void doSelect(Population pop) {
 		int n = (pop.getPop().size() / 10);
-		ArrayList<Organism> list_in = pop.getPop();
+		ArrayList<OrganismBit> list_in = pop.getPop();
 		Collections.sort(list_in); // sorts ascending 0 lowest, size-1 highest.
 		int lsize = list_in.size();
 		for (int i = 0; i < (lsize - n); i++) {

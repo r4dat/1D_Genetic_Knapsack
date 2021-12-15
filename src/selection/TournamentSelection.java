@@ -3,7 +3,7 @@ package selection;
 import java.util.ArrayList;
 import java.util.Random;
 
-import organism.Organism;
+import organism.OrganismBit;
 import population.Population;
 
 
@@ -22,13 +22,13 @@ public class TournamentSelection implements SelectionStrategy {
 	 * @param pop the Population
 	 */
 	public void doSelect(Population pop) {
-		ArrayList<Organism> list_in = pop.getPop();
-		ArrayList<Organism> orig_clone = pop.deepCopyDense();
+		ArrayList<OrganismBit> list_in = pop.getPop();
+		ArrayList<OrganismBit> orig_clone = pop.deepCopyDense();
 		orig_clone.trimToSize();
 		int lsize = list_in.size();
 		for (int i = 0; i < lsize / 2; i++) {
-			Organism a = orig_clone.get(rand.nextInt(lsize));
-			Organism b = orig_clone.get(rand.nextInt(lsize));
+			OrganismBit a = orig_clone.get(rand.nextInt(lsize));
+			OrganismBit b = orig_clone.get(rand.nextInt(lsize));
 			if (a.compareTo(b) > 0) {
 				list_in.set(i, a);
 			} else {

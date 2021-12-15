@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 import knapsack_config.Binary_knapsack_configuration;
-import organism.Organism;
+import organism.*;
 
 /**
  * The Class Population.
@@ -22,15 +22,15 @@ public class Population {
 	private int number_items = Binary_knapsack_configuration.WEIGHTS.length;
 
 	/** The internal Population representation. */
-	private ArrayList<Organism> pop = null;
+	private ArrayList<OrganismBit> pop = null;
 
 	/** The most recent max score for the Population */
 	private double most_recent_max_score = 0;
 
 	/** The best organism in the Population. 
-	 * Initially set to a random Organism just so 
+	 * Initially set to a random OrganismBit just so 
 	 * it's not null.*/
-	private Organism best_org = new Organism(number_items);
+	private OrganismBit best_org = new OrganismBit(number_items);
 
 	/**
 	 * Instantiates a new population.
@@ -38,8 +38,8 @@ public class Population {
 	 */
 	private Population() {
 		// Ideally we'd do have organism related OOP for 
-		// Bit vs character genes. Then we could do ArrayList<? extends Organism> here.
-		pop = new ArrayList<Organism>(pop_size);
+		// Bit vs character genes. Then we could do ArrayList<T extends OrganismBit> here.
+		pop = new ArrayList<OrganismBit>(pop_size);
 		fillPop();
 	}
 
@@ -51,12 +51,12 @@ public class Population {
 		for (int i = 0; i < pop_size; i++) {
 			if (pop.size() == pop_size) {
 				if (pop.get(i) == null) {
-					Organism o = new Organism(number_items);
+					OrganismBit o = new OrganismBit(number_items);
 					pop.set(i, o);
 				}
 			} else {
 				// fill Pop during initial creation.
-				pop.add(new Organism(number_items));
+				pop.add(new OrganismBit(number_items));
 			}
 		}
 		// force fitness evaluation when new organisms are added. 
@@ -86,7 +86,7 @@ public class Population {
 	 *
 	 * @return the pop
 	 */
-	public ArrayList<Organism> getPop() {
+	public ArrayList<OrganismBit> getPop() {
 		return pop;
 	}
 
@@ -98,11 +98,11 @@ public class Population {
 	 * @return the maximum score from current population.
 	 */
 	public double evaluateFitness() {
-		for (Organism org : pop) {
+		for (OrganismBit org : pop) {
 			org.evaluateFitness();
 			if (org.getFitness() > most_recent_max_score) {
 				most_recent_max_score = org.getFitness();
-				best_org = (Organism) org.clone();
+				best_org = (OrganismBit) org.clone();
 			}
 		}
 		return most_recent_max_score;
@@ -115,13 +115,13 @@ public class Population {
 	 * E.g. [0,1,null].deepCopyDense returns [0,1].
 	 * @return the array list
 	 */
-	public ArrayList<Organism> deepCopyDense() {
-		ArrayList<Organism> orig_clone = new ArrayList<Organism>();
-		Iterator<Organism> iterator = pop.iterator();
+	public ArrayList<OrganismBit> deepCopyDense() {
+		ArrayList<OrganismBit> orig_clone = new ArrayList<OrganismBit>();
+		Iterator<OrganismBit> iterator = pop.iterator();
 		while (iterator.hasNext()) {
-			Organism tmp = (iterator.next());
+			OrganismBit tmp = (iterator.next());
 			if (tmp != null) {
-				orig_clone.add((Organism) tmp.clone());
+				orig_clone.add((OrganismBit) tmp.clone());
 			}
 		}
 		return orig_clone;
@@ -134,13 +134,13 @@ public class Population {
 	 * E.g. [0,1,null].deepCopySparse returns [0,1,null].
 	 * @return the array list
 	 */
-	public ArrayList<Organism> deepCopySparse() {
-		ArrayList<Organism> orig_clone = new ArrayList<Organism>();
-		Iterator<Organism> iterator = pop.iterator();
+	public ArrayList<OrganismBit> deepCopySparse() {
+		ArrayList<OrganismBit> orig_clone = new ArrayList<OrganismBit>();
+		Iterator<OrganismBit> iterator = pop.iterator();
 		while (iterator.hasNext()) {
-			Organism tmp = (iterator.next());
+			OrganismBit tmp = (iterator.next());
 			if (tmp != null) {
-				orig_clone.add((Organism) tmp.clone());
+				orig_clone.add((OrganismBit) tmp.clone());
 			}
 			if (tmp == null) {
 				orig_clone.add(null);
