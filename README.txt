@@ -4,6 +4,13 @@ Github: https://github.com/r4dat/1D_Genetic_Knapsack
 
 Group member: Rob Rutherford
 
+Example Individual: [0,1,0,0...]
+Example Target: [1,1,1,...]
+Fitness: see src/organism/OrganismBit for evaluateFitness function.
+Maximize value, subject to knapsack size. 
+Weights and Values are in src/knapsack_config/Binary_knapsack_configuration
+
+
 The following assumes you're in the top-level directory of the repository/project, and have java sdk bin in path. 
 
 JavaDoc creation command:
@@ -27,19 +34,15 @@ Epoch: 1 max fitness: 5095.0 Percent max: 0.676267586939209
 Epoch: 54 max fitness: 5943.0 Percent max: 0.7888239978762941
 
 __singleton pattern__
-src/population/Population.java
+src/population/PopulationBit.java
 
 Population is a singleton using double checked locking implementation. 
 This reduces synchronization overhead if we want to expand this system in a multi-threaded way. (Head First Design Patterns, p182)
 Our problem is one amenable to a single small pool, but we could make a very large population singleton and alter it to farm out 
 mutation, crossover, and evaluation on chunks of the population.
 
-While the code is not currently set up this way, adding an Organism interface, and the OrganismBit
-as the current Organism would be a good choice. Then we could use generics appropriately
-in the population. Like ArrayList<? extends Organism> - this covers both heterogenous additions to the ArrayList, and 
-future extension ala OrganismLetters. Some typing is needed because previous versions of Java would allow untyped Collections which can lead to heterogenous sets. E.g. it's possible the ArrayList
-might contain an Organism, and a integer or some other mixed object types.
-
+While not currently fully implemented a Factory design could be used with an abstracted population calling PopulationBit
+or PopulationChar depending on knapsack configuration settings.
 
 __strategy pattern__
 src/selection/SelectionStrategy.java
@@ -65,10 +68,10 @@ Concrete Product: src/crossover/FixedCrossover.java
 
 Crossover and mutation styles were created using the abstract factory pattern. 
 The interface Evolution Factory has concrete factories creating concrete "products" Crossover and Mutation. 
-The "products" being created implement the anstract interface Crossover and Mutation. 
+The "products" being created implement the abstract interface Crossover and Mutation. 
 (interface)/Evolution Factory/ -> (Concrete) Deterministic and Random Evolution Factories. 
-(interface)/Crossover,Mutate classes/ -> (Concrete) Fixed and Random Crossover classes. 
-So we have the parallel abstract to concrete structure found in the factory pattern. 
+(interface)/Crossover,Mutate classes/ -> (Concrete) Fixed and Random Crossover,Mutate classes. 
+So we have the parallel abstract to concrete structure found in the abstract factory pattern. 
 This allows us to delegate the Crossover algorithm creation to the sublcass concrete factory, while not caring 
 from the client perspective what's going on under the hood.
 
@@ -77,16 +80,16 @@ interfaces.
 
 As a future state the factories could take in a run-time Organism and return appropriate mutate/crossover functions
 as these would differ depending on gene type (bits vs letter sets as in DNA for example). 
+Or a more generic implementation of the crossover/mutate. The current implementation still depends heavily on 
+methods from the BitSet inherited methods in OrganismBit.
 
-__Abstraction__
-I'd acknowledge that there is space for further OOP in the organism class. 
-I have not further done so out of deference to the actual GA problem I'm solving. 
-My next iteration of the project would have an abstract Organism interface, with 
-the current organism becoming BitOrganism or similar. That way we could add an additional 
-Organism type that uses characters (ala DNA) for its genes instead of just bits. 
+__generics__
+Currently the desired Population is created directly (PopulationBit). 
+The desired result is to have a population factory creating the proper Population sub-type (Char vs Bit).
+We use generics to bound the factory return types to sub-types of the Population and Organism related types. 
 
-The fully realized nature of this is an abstraction for genes 
-and an organism factory that can have binary, character [A,C,G,T], or other customized genes, 
-with their dependent mutation functions.
+__Future State__
+Use more generic mutate and crossover functions that handle both bit and char genes. 
+Implement factory to produce correct populations or alternatively abstract population 
+creation so they're interchangeable at a client level.
 
-The above abstraction would also be a good use of generics as previously discussed. 
