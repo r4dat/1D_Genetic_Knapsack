@@ -1,16 +1,25 @@
+# A 1D Genetic Knapsack Implementation using design patterns.
+
 CS613
 A 1D Genetic Knapsack Implementation using design patterns.
+
 Github: https://github.com/r4dat/1D_Genetic_Knapsack
 
-Group member: Rob
+## Group member(s): 
+Rob
 
+## Organism and optimizer elements:
 Example Individual: [0,1,0,0...]
+
 Example Target: [1,1,1,...]
+
 Fitness: see src/organism/OrganismBit for evaluateFitness function.
+
 Maximize value, subject to knapsack size. 
+
 Weights and Values are in src/knapsack_config/Binary_knapsack_configuration
 
-
+## Manual compilation and JavaDoc creation:
 The following assumes you're in the top-level directory of the repository/project, and have java sdk bin in path. 
 
 JavaDoc creation command:
@@ -22,18 +31,28 @@ javac -d .\bin -cp .\bin .\src\crossover\*.java .\src\evolution_factory\*.java .
 Run command: 
 java -cp .\bin ga_knapsack_runner.Ga_knapsack_runner
 
+## System process and output:
 Output: 
 System runs the genetic optimizer on a known binary knapsack problem for 10,000 epochs.
+
 System prints initial population fitness, and then when a higher fitness organism is found prints the epoch, fitness, and
-percentage fitness vs known maximum from branch-and-bound solution. See: https://developers.google.com/optimization/bin/knapsack
+
+percentage fitness vs known maximum from branch-and-bound solution. 
+See: https://developers.google.com/optimization/bin/knapsack
 
 Sample Output: 
-Initial Population Fitness:2951.0
-Epoch: 0 max fitness: 2951.0 Percent max: 0.3916910007963897
-Epoch: 1 max fitness: 5095.0 Percent max: 0.676267586939209
-Epoch: 54 max fitness: 5943.0 Percent max: 0.7888239978762941
 
+> Initial Population Fitness: 2951.0
+> 
+> Epoch: 0 max fitness: 2951.0 Percent max: 0.3916910007963897
+> 
+> Epoch: 1 max fitness: 5095.0 Percent max: 0.676267586939209
+> 
+> Epoch: 54 max fitness: 5943.0 Percent max: 0.7888239978762941
+
+## Patterns:
 __singleton pattern__
+
 src/population/PopulationBit.java
 
 Population is a singleton using double checked locking implementation. 
@@ -45,6 +64,7 @@ While not currently fully implemented a Factory design could be used with an abs
 or PopulationChar depending on knapsack configuration settings.
 
 __strategy pattern__
+
 src/selection/SelectionStrategy.java
 src/selection/TournamentSelection.java
 src/ga_knapsack_runner/Ga_knapsack_runner.java
@@ -61,6 +81,7 @@ Thanks to the strategy pattern this is a relatively easy thing to do, as shown b
 
 
 __factory pattern__
+
 Abstract Factory: src/evolution_factory/EvolutionFactory.java
 Concrete Factory: src/evolution_factory/DeterministicEvoFactory.java
 Abstract Product: src/crossover/Crossover.java  
@@ -84,11 +105,13 @@ Or a more generic implementation of the crossover/mutate. The current implementa
 methods from the BitSet inherited methods in OrganismBit.
 
 __generics__
+
 Currently the desired Population is created directly (PopulationBit). 
 The desired result is to have a population factory creating the proper Population sub-type (Char vs Bit).
 We use generics to bound the factory return types to sub-types of the Population and Organism related types. 
 
 __Future State__
+
 Use more generic mutate and crossover functions that handle both bit and char genes. 
 Implement factory to produce correct populations or alternatively abstract population 
 creation so they're interchangeable at a client level.
