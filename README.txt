@@ -2,7 +2,7 @@ CS613
 A 1D Genetic Knapsack Implementation using design patterns.
 Github: https://github.com/r4dat/1D_Genetic_Knapsack
 
-Group member: Rob Rutherford
+Group member: Rob
 
 Example Individual: [0,1,0,0...]
 Example Target: [1,1,1,...]
