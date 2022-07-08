@@ -1,5 +1,7 @@
 # A 1D Genetic Knapsack Implementation using design patterns.
 
+*This was completed for coursework and is a genetic optimizer for the binary knapsack problem.*
+
 CS613
 A 1D Genetic Knapsack Implementation using design patterns.
 
